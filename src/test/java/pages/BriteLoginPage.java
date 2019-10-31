@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import sun.plugin.services.BrowserService;
 import utils.BrowserUtils;
 import utils.Settings;
 
