@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(features="resources/features"
         ,glue=""
         ,dryRun = false
-        ,tags = "@regression")
+        ,tags = "@regression"
+        ,plugin =  {"pretty","html:target/html", "json:target/cucumber.json"})
 public class RegressionTestsRunner {
 }

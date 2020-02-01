@@ -17,4 +17,4 @@ log/
 target/
 
 # configuration properties should be ignored to secure confidential data
-# configuration.properties
+configuration.properties
