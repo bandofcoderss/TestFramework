@@ -1,7 +1,10 @@
 package utils.hooks;
 
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import utils.Settings;
 import utils.drivers.Driver;
 
@@ -25,12 +28,16 @@ public class ScenarioHooks {
     }
 
     @After
-    public  void stopWebDriver()
-    {
-        if(!Settings.BROWSER.trim().toUpperCase().equalsIgnoreCase("DEBUG"))
-        {
-            Driver.Instance.stopWebDriver();
+    public void ScenarioTearDown(Scenario scenario){
+        if (scenario.isFailed()) {
+            // Take a screenshot...
+            final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+            // embed it in the report.
+            scenario.embed(screenshot, "image/png");
         }
+        //will close browser after scenario unless the value of browser in configuration.properties file is 'DEBUG"
+        if(!Settings.BROWSER.trim().toUpperCase().equalsIgnoreCase("DEBUG"))
+            Driver.Instance.stopWebDriver();
     }
 
 }
