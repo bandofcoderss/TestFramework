@@ -55,5 +55,10 @@ public class BriteERPLoginSteps extends BaseSteps{
         Assert.assertEquals("Inbox page title validation failed", expectedTitle, actualTitle);
     }
 
+    @Then("fail")
+    public void fail() {
+        Assert.fail("Test Failure");
+    }
+
 
 }

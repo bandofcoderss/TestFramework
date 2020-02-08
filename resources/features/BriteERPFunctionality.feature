@@ -11,3 +11,8 @@ Feature: BriteERP Login Functionality
     Given Manager on Login Page of the application
     When Manager logs in with valid credentials
     Then Manager navigates to Inbox page of the application
+
+    #Failed scenario example
+  Scenario: Login with valid credentials - employee
+    Given Employee on Login Page of the application
+    Then fail
