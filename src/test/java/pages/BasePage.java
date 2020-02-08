@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
 /**
  * @author Ibraiym Denizov
  */

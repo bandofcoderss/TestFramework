@@ -9,22 +9,23 @@ import java.util.concurrent.TimeUnit;
 
 public class ScenarioHooks {
 
-    @Before
+    @Before("@browser and not @api")
     public void startWebDriver()
     {
         String browser = Settings.BROWSER;
         switch (browser.trim().toUpperCase())
         {
-            case "CHROME": Driver.Instance.startChrome(); break;
+            case "CHROME":
+            case "DEBUG":
+                Driver.Instance.startChrome(); break;
             case "IE" : Driver.Instance.startIE(); break;
             case "HEADLESS": Driver.Instance.startHeadless(); break;
-            case "DEBUG": Driver.Instance.startChrome();
             default: // log some error message or start chrome by default
         }
         Driver.getDriver().manage().timeouts().implicitlyWait(Settings.IMPLICITWAITTIME, TimeUnit.SECONDS);
     }
 
-    @After
+    @After("@browser and not @api")
     public  void stopWebDriver()
     {
         if(!Settings.BROWSER.trim().toUpperCase().equalsIgnoreCase("DEBUG"))
